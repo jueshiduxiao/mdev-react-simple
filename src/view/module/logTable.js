@@ -1,0 +1,40 @@
+import React from 'react';
+import { Table, Pagination, Button, Icon } from 'antd';
+
+const { Column } = Table;
+
+class LogTable extends React.Component {
+    pageChange = (page, pageSize) => {
+        this.props.action.logSearch({ page: page });
+    }
+    render() {
+        const { table, page } = this.props;
+        return (
+            <div className="log-table">
+                <Table dataSource={table.list} bordered={true}
+                    pagination={false} loading={table.loading} size="middle">
+                    <Column title="操作时间" dataIndex="operateTime" />
+                    <Column title="操作人" dataIndex="operatorName" />
+                    <Column title="归属板块" dataIndex="moduleText" />
+                    <Column title="楼盘名称" dataIndex="projectName" />
+                    <Column title="省" dataIndex="provinceName" />
+                    <Column title="市" dataIndex="cityName" />
+                    <Column title="动作" dataIndex="operation" />
+                    <Column title="操作" render={()=> {
+                        return (
+                            <Button>
+                                查看 <Icon type="double-right" />
+                            </Button>
+                        )
+                        }}
+                        />
+                </Table>
+                <div className="page">
+                    <Pagination current={page.current} total={page.total} onChange={this.pageChange} />
+                </div>
+            </div>
+        );
+    }
+}
+
+export default LogTable;
