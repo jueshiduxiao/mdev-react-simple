@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 /**
  * 公共方法
  */
