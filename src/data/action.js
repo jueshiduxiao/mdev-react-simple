@@ -85,11 +85,6 @@ let logSearch = function (params) {
         context.setState(state);
     })
     .catch(e => console.log(e));
-    
-    /*
-    console.log('search', filter);
-*/
-
 };
 
 let logInit = function () {
