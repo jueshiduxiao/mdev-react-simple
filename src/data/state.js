@@ -3,18 +3,13 @@ let state = {
         filter: {
             provinceId: '-1',
             provinceName: '全部',
+            provinceList: [],
             cityId: '',
             cityName: '',
+            cityList: [],
+            projectName: '',
             module: '-1',
             moduleText: '全部',
-            operatorName: '',
-            projectName: '',
-            startTime: '',
-            endTime: '',
-            page: 0,
-            pageSize: 10,
-            provinceList: [],
-            cityList: [],
             moduleList: [
                 {
                   "key": -1,
@@ -48,7 +43,12 @@ let state = {
                   "key": 6,
                   "value": "点评审核记录"
                 }
-            ]
+            ],
+            operatorName: '',
+            startTime: '',
+            endTime: '',
+            page: 0,
+            pageSize: 10
         },
         table: {
             loading: false,

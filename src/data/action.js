@@ -6,7 +6,6 @@ let context = null;
 let config = function (conf) {
     if (conf.context) {
         context = conf.context;
-        window.lx = context;
     }
 };
 
@@ -84,7 +83,11 @@ let logSearch = function (params) {
         state.log.table.loading = false;
         context.setState(state);
     })
-    .catch(e => console.log(e));
+    .catch(e => {
+        let state = Object.assign({}, context.state);
+        state.log.table.loading = false;
+        context.setState(state);
+    });
 };
 
 let logInit = function () {

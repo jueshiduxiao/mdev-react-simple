@@ -9,10 +9,11 @@ class LogTable extends React.Component {
     }
     render() {
         const { table, page } = this.props;
+        table.list.map(item => item.key = item.id);
         return (
             <div className="log-table">
-                <Table dataSource={table.list} bordered={true}
-                    pagination={false} loading={table.loading} size="middle">
+                <Table dataSource={table.list} bordered={true} pagination={false}
+                    loading={table.loading} size="middle">
                     <Column title="操作时间" dataIndex="operateTime" />
                     <Column title="操作人" dataIndex="operatorName" />
                     <Column title="归属板块" dataIndex="moduleText" />

@@ -9,24 +9,24 @@ class LogFilter extends React.Component {
         super();
         this.state = Object.assign({}, props.filter);
     }
-    selectProvice = (item) => {
+    updateProvice = (item) => {
         this.setState({ provinceId: item.key, provinceName: item.label });
         this.setState({ cityId: '-1', cityName: '全部' });
         this.props.action.logGetCity(item);
     }
-    selectCity = (item) => {
+    updateCity = (item) => {
         this.setState({ cityId: item.key, cityName: item.label });
     }
-    projectNameChange = (e) => {
+    updateProjectName = (e) => {
         this.setState({ projectName: e.target.value });
     }
-    moduleChange = (item) => {
+    updateModule = (item) => {
         this.setState({ module: item.key, moduleText: item.label });
     }
-    operatorNameChange = (e) => {
+    updateOperatorName = (e) => {
         this.setState({ operatorName: e.target.value });
     }
-    dateChange = (date, dateString) => {
+    updateDate = (date, dateString) => {
         this.setState({ startTime: dateString[0], endTime: dateString[1] });
     }
     search = () => {
@@ -74,28 +74,31 @@ class LogFilter extends React.Component {
             <div className="log-filter">
                 <div className="row">
                     <span className="lable">省&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;份：</span>
-                    <Select labelInValue value={{ key: this.state.provinceId, label: this.state.provinceName }}
-                        onChange={this.selectProvice} style={{ width: 120 }}>
+                    <Select labelInValue
+                        defaultValue={{ key: this.state.provinceId, label: this.state.provinceName }}
+                        onChange={this.updateProvice} style={{ width: 120 }}>
                         {provinceList}
                     </Select>
                     <span className="lable">城&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;市：</span>
-                    <Select labelInValue value={{ key: this.state.cityId, label: this.state.cityName }}
-                        onChange={this.selectCity} style={{ width: 120 }}>
+                    <Select labelInValue
+                        value={{ key: this.state.cityId, label: this.state.cityName }}
+                        onChange={this.updateCity} style={{ width: 120 }}>
                         {cityList}
                     </Select>
                     <span className="lable">楼盘名称：</span>
-                    <Input onChange={this.projectNameChange} style={{ width: 200 }} />
+                    <Input onChange={this.updateProjectName} style={{ width: 200 }} />
                 </div>
                 <div className="row">
                     <span className="lable">来&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;源：</span>
-                    <Select labelInValue defaultValue={{ key: this.state.module, label: this.state.moduleText }}
-                        onChange={this.moduleChange} style={{ width: 120 }}>
+                    <Select labelInValue
+                        defaultValue={{ key: this.state.module, label: this.state.moduleText }}
+                        onChange={this.updateModule} style={{ width: 120 }}>
                         {moduleList}
                     </Select>
                     <span className="lable">操&nbsp;&nbsp;作&nbsp;&nbsp;人：</span>
-                    <Input onChange={this.operatorNameChange} style={{ width: 120 }} />
+                    <Input onChange={this.updateOperatorName} style={{ width: 120 }} />
                     <span className="lable">操着时间：</span>
-                    <RangePicker onChange={this.dateChange} style={{ width: 200 }} />
+                    <RangePicker onChange={this.updateDate} style={{ width: 200 }} />
                     <Button type="primary" icon="search" onClick={this.search} style={{ marginLeft: 20 }}>Search</Button>
                 </div>
             </div>
