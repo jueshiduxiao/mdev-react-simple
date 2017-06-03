@@ -1,8 +1,5 @@
 /* eslint-disable */
 
-/**
- * 公共方法
- */
 
 exports.queryString = function (obj) {
     var str = '';
@@ -16,6 +13,8 @@ exports.queryString = function (obj) {
         return str;
     }
 };
+
+
 exports.arrToObject = function (arr, keyName, valName) {
     var obj = {};
     arr.forEach(function (item, i) {
