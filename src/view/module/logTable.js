@@ -7,6 +7,10 @@ class LogTable extends React.Component {
     pageChange = (page, pageSize) => {
         this.props.action.logSearch({ page: page });
     }
+    viewItem = (record) => {
+        var modal = require('../ui/modal.js');
+        modal.success('系统提示', `当前item的id为${record.id}！`);
+    }
     render() {
         const { table, page } = this.props;
         table.list.map(item => item.key = item.id);
@@ -21,9 +25,9 @@ class LogTable extends React.Component {
                     <Column title="省" dataIndex="provinceName" />
                     <Column title="市" dataIndex="cityName" />
                     <Column title="动作" dataIndex="operation" />
-                    <Column title="操作" render={()=> {
+                    <Column title="操作" render={(record)=> {
                         return (
-                            <Button>
+                            <Button onClick={this.viewItem.bind(this, record)}>
                                 查看 <Icon type="double-right" />
                             </Button>
                         )

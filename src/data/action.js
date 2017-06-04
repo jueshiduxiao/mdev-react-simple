@@ -1,5 +1,6 @@
 import format from '../lib/format.js';
 import querystring from 'querystring';
+import modal from '../view/ui/modal.js';
 
 let context = null;
 
@@ -87,6 +88,7 @@ let logSearch = function (params) {
         let state = Object.assign({}, context.state);
         state.log.table.loading = false;
         context.setState(state);
+        modal.success('系统提示', '数据加载失败！');
     });
 };
 
