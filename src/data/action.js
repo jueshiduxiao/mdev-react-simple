@@ -2,6 +2,8 @@ import format from '../lib/format.js';
 import querystring from 'querystring';
 import modal from '../view/ui/modal.js';
 
+const hostApi = 'http://www.easy-mock.com/mock/596ccc11a1d30433d8359503/api';
+
 let context = null;
 
 let config = function (conf) {
@@ -11,7 +13,7 @@ let config = function (conf) {
 };
 
 let logGetCity = function (item) {
-    fetch('//house-sv-base.focus-dev.cn/city/list?provinceId=' + item.key)
+    fetch(hostApi + '/city/list?provinceId=' + item.key)
     .then(res => res.json())
     .then(data => {
         let state = Object.assign({}, context.state);
@@ -60,7 +62,7 @@ let logSearch = function (params) {
         qdata.endTime = +new Date(filter.endTime);
     }
     let qs = querystring.stringify(qdata);
-    fetch('//house-be-manage.focus-dev.cn/record/list?' + qs, {
+    fetch(hostApi + '/record/list?' + qs, {
         credentials: 'include'
     })
     .then(res => res.json())
@@ -93,7 +95,7 @@ let logSearch = function (params) {
 };
 
 let logInit = function () {
-    fetch('//house-sv-base.focus-dev.cn/city/province')
+    fetch(hostApi + '/city/province')
     .then(res => res.json())
     .then(data => {
         let state = Object.assign({}, context.state);
