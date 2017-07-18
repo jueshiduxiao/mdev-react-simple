@@ -62,9 +62,7 @@ let logSearch = function (params) {
         qdata.endTime = +new Date(filter.endTime);
     }
     let qs = querystring.stringify(qdata);
-    fetch(hostApi + '/record/list?' + qs, {
-        credentials: 'include'
-    })
+    fetch(hostApi + '/record/list?' + qs)
     .then(res => res.json())
     .then(data => {
         let state = Object.assign({}, context.state);
